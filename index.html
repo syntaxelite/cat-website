@@ -1,84 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Which Cat Are You?</title>
 
 <style>
-body {
-    font-family: Arial;
-    background: #fef6f9;
-    text-align: center;
-    padding: 40px;
+
+/* Background */
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(to right,#ffd6e8,#fff0f5);
+text-align:center;
+padding:20px;
 }
 
-input, select, button {
-    padding: 10px;
-    margin: 8px;
-    width: 200px;
+/* Title */
+h1{
+color:#ff4d88;
 }
 
-button {
-    background-color: #ff7aa2;
-    border: none;
-    color: white;
-    cursor: pointer;
+/* Form Styling */
+input, select, button{
+padding:12px;
+margin:10px;
+width:90%;
+max-width:280px;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+/* Button Style */
+button{
+background:#ff4d88;
+color:white;
+border:none;
+font-size:16px;
+cursor:pointer;
 }
+
+button:hover{
+background:#e6005c;
+}
+
+/* Result Box */
+#result{
+margin-top:25px;
+padding:20px;
+background:white;
+border-radius:12px;
+box-shadow:0 0 15px pink;
+}
+
+/* Cat Image */
+#result img{
+width:250px;
+margin-top:15px;
+border-radius:12px;
+}
+
 </style>
-
 </head>
 
 <body>
 
-<h1>🐾 Which Cat Are You?</h1>
+<h1>🐱 Which Cat Are You?</h1>
 
 <input type="text" id="name" placeholder="Enter your name"><br>
-<input type="number" id="age" placeholder="Enter your age"><br>
 
-<select id="gender">
-<option value="">Select gender</option>
-<option>Female</option>
-<option>Male</option>
-<option>Other</option>
+<select id="personality">
+<option value="">Choose Personality</option>
+<option value="cute">Cute & Friendly</option>
+<option value="lazy">Lazy & Relaxed</option>
+<option value="playful">Playful & Energetic</option>
+<option value="royal">Royal & Elegant</option>
 </select><br>
 
-<button onclick="findCat()">Find My Cat 🐱</button>
+<button onclick="findCat()">Find My Cat 🐾</button>
 
 <div id="result"></div>
 
 <script>
-function findCat() {
 
-let name = document.getElementById("name").value;
-let age = document.getElementById("age").value;
-let gender = document.getElementById("gender").value;
+function findCat(){
 
-if(name === "" || age === "" || gender === ""){
-document.getElementById("result").innerHTML = "Please fill all details!";
-return;
+let name=document.getElementById("name").value;
+let personality=document.getElementById("personality").value;
+
+let cat="";
+let image="";
+let info="";
+
+if(personality==="cute"){
+cat="Persian Cat";
+image="images/persian.jpg";
+info="Persian cats are loving, calm and very fluffy. They enjoy peaceful environments and lots of cuddles.";
 }
 
-let catType = "";
-
-if(age < 18){
-catType = "Playful Kitten 🐱";
-}
-else if(age <= 25){
-catType = "Curious Cat 😼";
-}
-else{
-catType = "Wise Cat 🐈";
+else if(personality==="lazy"){
+cat="British Shorthair";
+image="images/british.jpg";
+info="British Shorthairs are relaxed and quiet cats. They love sleeping and staying comfortable.";
 }
 
-document.getElementById("result").innerHTML =
-"Hi " + name + "! You are a " + catType;
+else if(personality==="playful"){
+cat="Bengal Cat";
+image="images/bengal.jpg";
+info="Bengal cats are energetic and playful. They love running, climbing and exploring.";
 }
+
+else if(personality==="royal"){
+cat="Siamese Cat";
+image="images/siamese.jpg";
+info="Siamese cats are elegant, intelligent and very social. They love attention and interaction.";
+}
+
+document.getElementById("result").innerHTML=
+"<h2>Hello "+name+" 🐾</h2>"+
+"<h3>You are like a "+cat+"</h3>"+
+"<p>"+info+"</p>"+
+"<img src='"+image+"'>";
+
+}
+
 </script>
 
 </body>
